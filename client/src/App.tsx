@@ -1,6 +1,7 @@
 import { useReducer } from "react"
 import Header from "./components/Header"
 import Form from "./components/Form"
+import ActivityList from "./components/ActivityList"
 import { activityReducer, initialState } from "./reducers/activityReducer"
 
 function App() {
@@ -12,6 +13,8 @@ function App() {
       <Header />
       <Form 
       dispatch={dispatch}/>
+      <ActivityList 
+      activities={state.activities}/>
     </>
   )
 }
