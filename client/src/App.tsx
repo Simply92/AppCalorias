@@ -1,35 +1,24 @@
-import { useEffect, useReducer } from "react"
+import { useEffect } from "react"
 import Header from "./components/Header"
 import Form from "./components/Form"
 import CalorieTracker from "./components/CalorieTracker"
 import ActivityList from "./components/ActivityList"
-import { activityReducer, initialState } from "./reducers/activityReducer"
+import { useActivity } from "./hooks/useActivity"
 
 function App() {
 
-  const [state, dispatch] = useReducer( activityReducer, initialState) 
+  const { state } = useActivity()
 
   useEffect(() => {
-      localStorage.setItem('activities', JSON.stringify(state.activities))
+    localStorage.setItem('activities', JSON.stringify(state.activities))
   }, [state.activities])
 
   return (
     <>
-      <Header 
-      state={state}
-      dispatch={dispatch}
-      />
-      <Form 
-      dispatch={dispatch}
-      state={state}
-      />
-      <CalorieTracker
-      activities={state.activities}
-      />
-      <ActivityList 
-      activities={state.activities}
-      dispatch={dispatch}
-      />
+      <Header />
+      <Form />
+      <CalorieTracker />
+      <ActivityList />
     </>
   )
 }
